@@ -50,4 +50,4 @@ def build_dataset(key, term, start_year, end_year):
                 time.sleep(86400)
 
     #gets the dataframe and converts it to csv
-    articles_df.to_csv('nyt_data.csv', index=False)
+    articles_df.to_csv('../nyt_data.csv', index=False)
