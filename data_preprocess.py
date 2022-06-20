@@ -1,6 +1,5 @@
 #imports necessary packages
 import pandas as pd
-import re
 import contractions
 import string
 import nltk
@@ -20,7 +19,7 @@ def preprocess(text_series):
     text_series = text_series.apply(lambda x: ''.join([character for character in x if character not in string.spunctuation]))
 
     #remove numbers
-    text_series = text_series.apply(lambda x: ' '.join(re.sub('[^a-zA-zZ]+', ' ', x).split()))
+    text_series = text_series.apply(lambda x: ' '.join([word for word in x if not word.isnumeric()]))
 
     #remove stopwords
     stopwords = [sw for sw in nltk.corpus.stopwords.words('english')]
