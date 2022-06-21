@@ -22,10 +22,10 @@ def preprocess(text_series):
     text_series = text_series.apply(lambda x: ' '.join(re.sub("[^a-zA-Z]+", " ", x).split()))
 
     #remove stopwords
-    #stopwords = [sw for sw in nltk.corpus.stopwords.words('english')]
-    #text_series = text_series.apply(lambda x: ' '.join([word for word in x. split() if word not in stopwords]))
+    stopwords = [sw for sw in nltk.corpus.stopwords.words('english')]
+    text_series = text_series.apply(lambda x: ' '.join([word for word in x. split() if word not in stopwords]))
 
     #lemmatization
-    #text_series = text_series.apply(lambda x: ' '.join([WordNetLemmatizer().lemmatize(word) for word in x.split()]))
+    text_series = text_series.apply(lambda x: ' '.join([WordNetLemmatizer().lemmatize(word) for word in x.split()]))
 
     return text_series
