@@ -26,6 +26,6 @@ def preprocess(text_series):
     text_series = text_series.apply(lambda x: ' '.join([word for word in x. split() if word not in stopwords]))
 
     #lemmatization
-    text_series = text_series.apply(lambda x: ' '.join([WordNetLemmatizer().lemmatize(word) for word in x.split()]))
+    text_series = text_series.apply(lambda x: ' '.join([nltk.stem.PorterStemmer().stem(WordNetLemmatizer().lemmatize(word, pos='v')) for word in x.split()]))
 
     return text_series
