@@ -16,14 +16,14 @@ def preprocess(text_series):
     text_series = text_series.apply(lambda x: ' '.join([contractions.fix(word) for word in x.split()]))
 
     #remove punctuation
-    text_series = text_series.apply(lambda x: ''.join([character for character in x if character not in string.spunctuation]))
+    text_series = text_series.apply(lambda x: ''.join([character for character in x if character not in string.punctuation]))
 
     #remove numbers
     text_series = text_series.apply(lambda x: ' '.join([word for word in x if not word.isnumeric()]))
 
     #remove stopwords
     stopwords = [sw for sw in nltk.corpus.stopwords.words('english')]
-    text_series = text_serires.apply(lambda x: ' '.join([word for word in x. split() if word not in stopwords]))
+    text_series = text_series.apply(lambda x: ' '.join([word for word in x. split() if word not in stopwords]))
 
     #lemmatization
     text_series = text_series.apply(lambda x: ' '.join([WordNetLemmatizer().lemmatize(word) for word in x.split()]))
