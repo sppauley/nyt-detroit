@@ -5,7 +5,6 @@ import time
 
 
 def build_dataset(key, term, start_year, end_year):
-    # counts cycles and captures start epoch
     cycle = 0
     script_start = time.time()
 
@@ -56,11 +55,13 @@ def build_dataset(key, term, start_year, end_year):
                 time.sleep(6)
 
             # may have hit the daily limit, so pauses execution for 24-hours if given an error message
-            except KeyError:
-                time.sleep(86400)
+            except KeyError as e:
+              print(e)
+              print("Pausing for 24 hours")
+              time.sleep(86400)
 
     # sets filename based on query
-    filename = f"{round(script_start,0)}_{start_year}_{end_year}_{term}"
+    filename = f"{int(script_start)}_{start_year}_{end_year}_{term}"
     # gets the dataframe and converts it to csv
     articles_df.to_csv(filename, index=False)
     script_stop = time.time()
