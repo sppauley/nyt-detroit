@@ -1,9 +1,9 @@
 from api_request import build_dataset
 
 
-key = "" # New York Times API key
-term = "" # search string
-start_year = 
-end_year = 
+key = str(input("input nyt api key: "))
+term = str(input("input search term: "))
+start_year = int(input("input start year: "))
+end_year = int(input("input end year: "))
 
 build_dataset(key, term, start_year, end_year)
