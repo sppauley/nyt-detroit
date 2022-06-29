@@ -61,11 +61,18 @@ def build_dataset(key, term, start_year, end_year):
                     # the per-minute limit
                     time.sleep(6)
 
-                # may have hit the daily limit, so pauses execution for 24-hours if given an error message
+                # error exception
                 except KeyError as e:
-                  print(response)
-                  print("Pausing for 24 hours")
-                  time.sleep(86400)
+                    print(response)
+
+                    # if it hits the daily limit, pauses for 24 hours
+                    if response['fault'] and 'Rate limit quota violation.' in err_msg['fault']['faultstring']:
+                        print("Pausing for 24 hours")
+                        time.sleep(86400)
+
+                    # otherwise, stops the script by setting the more var to False
+                    else:
+                        more = False
 
     # sets filename based on query
     filename = f"{int(script_start)}_{start_year}_{end_year}_{term}"
