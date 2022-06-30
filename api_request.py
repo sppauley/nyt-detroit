@@ -70,9 +70,9 @@ def build_dataset(key, term, start_year, end_year):
                         print("Pausing for 24 hours")
                         time.sleep(86400)
 
-                    # otherwise, stops the script by setting the more var to False
+                    # otherwise, breaks the for loop
                     else:
-                        more = False
+                        break;
 
     # sets filename based on query
     filename = f"{int(script_start)}_{start_year}_{end_year}_{term}"
