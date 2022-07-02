@@ -66,7 +66,7 @@ def build_dataset(key, term, start_year, end_year):
                     print(response)
 
                     # if it hits the daily limit, pauses for 24 hours
-                    if response['fault'] and 'Rate limit quota violation.' in err_msg['fault']['faultstring']:
+                    if response['fault'] and 'Rate limit quota violation.' in response['fault']['faultstring']:
                         print("Pausing for 24 hours")
                         time.sleep(86400)
 
