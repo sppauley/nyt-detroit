@@ -66,12 +66,13 @@ def build_dataset(key, term, start_year, end_year):
                     print(response)
 
                     # if it hits the daily limit, pauses for 24 hours
-                    if response['fault'] and 'Rate limit quota violation.' in response['fault']['faultstring']:
-                        print("Pausing for 24 hours")
-                        time.sleep(86400)
+                    try: 
+                        if response['fault'] and 'Rate limit quota violation.' in response['fault']['faultstring']:
+                            print("Pausing for 24 hours")
+                            time.sleep(86400)
 
                     # otherwise, breaks the for loop
-                    else:
+                    except KeyError as e2:
                         break;
 
     # sets filename based on query
