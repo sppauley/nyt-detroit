@@ -48,7 +48,10 @@ def build_dataset(key, term, start_year, end_year):
 
                     # concats the unformatted json response into the dataframe
                     docs = response['response']['docs']  # gets docs from the api payload
-                    articles_df = pd.concat([articles_df, pd.DataFrame(docs)])
+                    docs = pd.DataFrame(docs)
+                    docs['headline'] = [doc['main'] for doc in docs['headline']]
+                    print(docs['headline'])
+                    articles_df = pd.concat([articles_df, docs])
 
                     # if the current page is full (10 docs) and the page is less than or equal to 100, keep going
                     if len(docs) == 10 and page <= 100: #page limit of 100 in dev portal; 10 results per page
